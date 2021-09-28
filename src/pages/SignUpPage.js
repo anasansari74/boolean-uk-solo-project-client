@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import styled from "styled-components";
 // import useStore from "../store";
@@ -9,6 +9,7 @@ import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
+import useStore from "../store";
 
 const SignUpDiv = styled.div`
   display: grid;
@@ -41,32 +42,33 @@ const SignUpDiv = styled.div`
 `;
 
 export default function SignUpPage() {
-  const history = useHistory();
+  const signUpUser = useStore(store => store.signUpUser);
 
   const handleSignUp = e => {
     e.preventDefault();
 
-    // const target = e.target;
+    const target = e.target;
 
-    // const dateBorn = `${target.dOB.value} 00:00:00 +0000`;
+    const dateBorn = `${target.dOB.value} 00:00:00 +0000`;
 
-    // const userCreds = {
-    //   userName: target.userName.value.toString(),
-    //   fistName: target.firstName.value.toString(),
-    //   lastName: target.lastName.value.toString(),
-    //   dateOfBirth: dateBorn,
-    //   password: target.password.value.toString(),
-    //   bio: target.bio.value.toString(),
-    // };
+    const userCreds = {
+      userName: target.userName.value.toString(),
+      firstName: target.firstName.value.toString(),
+      lastName: target.lastName.value.toString(),
+      dateOfBirth: dateBorn,
+      password: target.password.value.toString(),
+      bio: target.bio.value.toString(),
+    };
 
-    history.push("/homePage");
+    console.log(userCreds);
+    signUpUser(userCreds);
   };
   return (
     <SignUpDiv>
       <h1>Sign up!</h1>
 
       <Form className="signup-form" onSubmit={handleSignUp}>
-        <Form.Group className="mb-3" controlId="text">
+        <Form.Group className="mb-3" controlId="firstName">
           <Form.Label>First Name</Form.Label>
           <Form.Control
             type="text"
@@ -75,7 +77,7 @@ export default function SignUpPage() {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="text">
+        <Form.Group className="mb-3" controlId="lastName">
           <Form.Label>Last Name</Form.Label>
           <Form.Control
             type="text"
@@ -84,7 +86,7 @@ export default function SignUpPage() {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="text">
+        <Form.Group className="mb-3" controlId="userName">
           <Form.Label>Username</Form.Label>
           <Form.Control
             type="text"
@@ -96,7 +98,7 @@ export default function SignUpPage() {
           </Form.Text>
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="text">
+        <Form.Group className="mb-3" controlId="password">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
@@ -105,7 +107,7 @@ export default function SignUpPage() {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="text">
+        <Form.Group className="mb-3" controlId="dOB">
           <Form.Label>Date of Birth</Form.Label>
           <Form.Control type="date" max="2003-10-01" name="dOB" />
         </Form.Group>

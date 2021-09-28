@@ -1,8 +1,14 @@
+import { useEffect } from "react";
+
 import styled from "styled-components";
 
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import { removeDuplicateObjectFromArray } from "../helper";
+import useStore from "../store";
+
 import Calender from "./calender";
+
+import Form from "react-bootstrap/Form";
+import Rides from "./Rides";
 
 const ViewBookingsDiv = styled.div`
   display: grid;
@@ -52,9 +58,30 @@ const ViewBookingsDiv = styled.div`
 
     margin: 1rem 15%;
   }
+
+  .rides {
+    display: grid;
+
+    margin: 2rem 15%;
+  }
 `;
 
 export default function BookARide() {
+  const allRides = useStore(store => store.allRides);
+  const getAllRides = useStore(store => store.getAllRides);
+
+  const setSearchDptLct = useStore(store => store.setSearchDptLct);
+  const setSearchArvLct = useStore(store => store.setSearchArvLct);
+  const setSearchDate = useStore(store => store.setSearchDate);
+
+  const uniqueLocations = removeDuplicateObjectFromArray(
+    allRides,
+    "departureLocation"
+  );
+
+  useEffect(() => {
+    getAllRides();
+  }, [getAllRides]);
   return (
     <ViewBookingsDiv>
       <div className="search-div">
@@ -67,37 +94,64 @@ export default function BookARide() {
 
           <Form.Group className="mb-3" controlId="text">
             <Form.Label>From:</Form.Label>
-            <Form.Select aria-label="Default select example" size="lg">
+            <Form.Select
+              aria-label="Default select example"
+              size="lg"
+              onChange={e => setSearchDptLct(e.target.value)}
+            >
               <option>Select departure location</option>
-              <option value="1"> One</option>
-              <option value="2"> Two</option>
-              <option value="3"> Three</option>
+              {uniqueLocations.map((location, index) => (
+                <option
+                  key={index}
+                  name="dptlct"
+                  value={location.departureLocation}
+                >
+                  {" "}
+                  {location.departureLocation}
+                </option>
+              ))}
             </Form.Select>
           </Form.Group>
           <Form.Group className="mb-3" controlId="text">
             <Form.Label>To:</Form.Label>
-            <Form.Select aria-label="Default select example" size="lg">
+            <Form.Select
+              aria-label="Default select example"
+              size="lg"
+              onChange={e => setSearchArvLct(e.target.value)}
+            >
               <option>Select arrival location</option>
-              <option value="1"> One</option>
-              <option value="2"> Two</option>
-              <option value="3"> Three</option>
+              {uniqueLocations.map((location, index) => (
+                <option
+                  key={index}
+                  name="arvlct"
+                  value={location.arrivalLocation}
+                >
+                  {" "}
+                  {location.arrivalLocation}
+                </option>
+              ))}
             </Form.Select>
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="text">
+          <Form.Group className="mb-3" controlId="date">
             <Form.Label>Date</Form.Label>
-            <Form.Control type="date" name="date" />
+            <Form.Control
+              type="date"
+              name="date"
+              onChange={e => setSearchDate(e.target.value)}
+            />
           </Form.Group>
-
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
         </Form>
       </div>
 
       <div className="calender">
         <h3>Low prices found by our customers</h3>
         <Calender />
+      </div>
+
+      <div className="rides">
+        <h3>Train Rides:</h3>
+        <Rides />
       </div>
     </ViewBookingsDiv>
   );

@@ -1,8 +1,9 @@
 import React from "react";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 import styled from "styled-components";
-// import useStore from "../store";
+import useStore from "../store";
 
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
@@ -40,26 +41,27 @@ const LoginDiv = styled.div`
 `;
 
 export default function LoginPage() {
-  // const loggedInUser = useStore(store => store.loggedInUser);
-  // const setLoggedInUser = useStore(store => store.setLoggedInUser);
+  // const loggedInUserId = useStore(store => store.loggedInUserId);
+  const setLoggedInUser = useStore(store => store.setLoggedInUser);
 
-  const history = useHistory();
+  // const history = useHistory();
 
   const handleLogin = e => {
     e.preventDefault();
 
-    // const target = e.target;
+    const target = e.target;
 
-    // const userCreds = {
-    //   userName: target.userName.value.toString(),
-    //   password: target.password.value.toString(),
-    // };
+    const userCreds = {
+      userName: target.userName.value.toString(),
+      password: target.password.value.toString(),
+    };
 
-    // setLoggedInUser(userCreds);
-
-    // loggedInUser !== null ? history.push("/homePage") : history.push("/");
-
-    history.push("/homePage");
+    setLoggedInUser(userCreds);
+    // .then(() => {
+    //   if (loggedInUserId) {
+    //     history.push("/homePage");
+    //   }
+    // });
   };
   return (
     <LoginDiv>
