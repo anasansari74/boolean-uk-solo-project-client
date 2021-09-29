@@ -155,6 +155,29 @@ const useStore = create((set, get) => ({
       })
       .catch(error => console.error(error));
   },
+
+  userTickets: [],
+  getUserTickets: userId => {
+    fetch(`${API_URL}/tickets/allTickets/${userId}`, {
+      credentials: "include",
+    })
+      .then(res => res.json())
+      .then(data => set({ userTickets: data }));
+  },
+
+  deleteTicket: (userId, rideId) => {
+    fetch(`${API_URL}/tickets/${userId}/${rideId}`, {
+      method: "DELETE",
+      credentials: "include",
+    })
+      .then(res => res.json())
+      .then(data => {
+        const remainingTickets = get().userTickets.filter(
+          ticket => ticket.trainRideId !== rideId
+        );
+        set({ userTickets: remainingTickets });
+      });
+  },
 }));
 
 export default useStore;

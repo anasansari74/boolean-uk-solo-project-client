@@ -60,7 +60,6 @@ export default function SignUpPage() {
       bio: target.bio.value.toString(),
     };
 
-    console.log(userCreds);
     signUpUser(userCreds);
   };
   return (

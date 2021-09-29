@@ -83,9 +83,7 @@ export default function Calender() {
     return new Intl.DateTimeFormat("en-GB", { weekday: "short" }).format(date);
   };
 
-  const handleClick = day => {
-    console.log(day);
-  };
+  const handleClick = day => {};
 
   for (let day = 1; day <= 31; day++) {
     //Marking the weekends
