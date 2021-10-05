@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# Silver-Train App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+In this project, users can login/sign-up to book avalaible train tickets and also cancel them
 
-## Available Scripts
+# Star feature
 
-In the project directory, you can run:
+There is a calender in this project which not only displays the price of the tickets for the train rides on the specific days but also the cheapest ticket avalaible!
 
-### `npm start`
+<img src="https://cdn.discordapp.com/attachments/875395575959404604/894977686802423909/unknown.png" alt="calender" width="600"/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# How to run/deploy this project?
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This project has been deployed and you can check it our here: https://silver-train.netlify.app/
 
-### `npm test`
+Other wise, you can:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Run ` npm i `
+- Run ` npm start ` to start server
 
-### `npm run build`
+Checkout the backend for this project here: https://github.com/anasansari74/boolean-uk-solo-project-server
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Challenges
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Setting up the login and signup and making sure the correct information is being passed through to the backend as the passwords are encrypted!
+- Making the calender appear on the page and giving it approprite styling
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Things I would change/ New features to be added
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Making the calender dynamic so that the it changes to which ever the date the user enters rather than only the dates avalaible in the database
+- Using the admin route where an admin can see and cancel train rides!
